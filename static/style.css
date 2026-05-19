@@ -1,58 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
     margin: 0;
-    padding: 30px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(180deg, #F4F7FB 0%, #EEF2F7 100%);
+    color: #0B1F3A;
 }
 
-h1 {
+.header {
+    background: #FFFFFF;
     text-align: center;
-    color: #1f2937;
+    padding: 32px 20px 26px;
+    border-bottom: 1px solid #D9DEE7;
+    box-shadow: 0 2px 10px rgba(11, 31, 58, 0.04);
 }
 
-h2 {
-    color: #111827;
-    margin-top: 40px;
-}
-
-.kpis {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin: 30px 0;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.card h2 {
+.header h1 {
     margin: 0;
-    font-size: 32px;
-    color: #2563eb;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0B1F3A;
 }
 
-.card p {
-    margin: 5px 0 0;
-    color: #4b5563;
+.header p {
+    margin: 10px 0 0;
+    color: #526174;
+    font-size: 17px;
 }
 
-.tabla {
+.container {
+    width: 94%;
+    max-width: 1450px;
+    margin: 28px auto;
+}
+
+.info {
+    background: #FFFFFF;
+    border: 1px solid #D9DEE7;
+    border-left: 5px solid #1E88E5;
+    border-radius: 14px;
+    padding: 18px 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 22px rgba(11, 31, 58, 0.06);
+}
+
+.info h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: #0B1F3A;
+}
+
+.info p {
+    margin: 0;
+    color: #526174;
+    line-height: 1.55;
+    font-size: 15.5px;
+}
+
+.dashboard {
+    background: #FFFFFF;
+    border: 1px solid #D9DEE7;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 12px 30px rgba(11, 31, 58, 0.08);
+}
+
+.dashboard iframe {
+    display: block;
     width: 100%;
-    border-collapse: collapse;
-    background: white;
+    height: 780px;
+    border: none;
+    border-radius: 12px;
+    background: #FFFFFF;
 }
 
-.tabla th, .tabla td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.footer {
+    width: 94%;
+    max-width: 1450px;
+    margin: 16px auto 28px;
+    text-align: center;
+    color: #667085;
+    font-size: 13px;
 }
 
-.tabla th {
-    background: #2563eb;
-    color: white;
+@media (max-width: 900px) {
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header p {
+        font-size: 15px;
+    }
+
+    .container {
+        width: 96%;
+        margin: 18px auto;
+    }
+
+    .dashboard {
+        padding: 10px;
+    }
+
+    .dashboard iframe {
+        height: 680px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 24px 14px 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .info {
+        padding: 16px;
+    }
+
+    .dashboard iframe {
+        height: 600px;
+    }
 }
