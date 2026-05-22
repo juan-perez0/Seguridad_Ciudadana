@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Minería de Datos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1>Minería de Datos en Seguridad Ciudadana</h1>
+    <p>Clustering, clasificación y reglas de asociación aplicadas a Cundinamarca</p>
+</header>
+
+<main class="container">
+
+    <section class="info">
+        <h2>Objetivo del análisis</h2>
+        <p>
+            Esta sección presenta los resultados obtenidos mediante técnicas de minería de datos
+            aplicadas a los indicadores de seguridad ciudadana. El objetivo fue descubrir agrupamientos,
+            patrones de riesgo y asociaciones entre categorías delictivas.
+        </p>
+        <a class="button" href="/">Volver al dashboard principal</a>
+    </section>
+
+    <section class="mining-grid">
+
+        <article class="panel">
+            <h2>Clustering de municipios</h2>
+            <p>
+                Se aplicó k-Means para agrupar municipios con comportamientos similares de seguridad
+                ciudadana, considerando variables como total de casos, tasa por 100.000 habitantes,
+                población y categorías delictivas.
+            </p>
+            <img src="{{ url_for('static', filename='img/orange_clustering.png') }}" alt="Clustering en Orange">
+            <p>
+                El clustering permitió identificar tres grupos de municipios. Soacha aparece como un caso
+                atípico por su alta concentración de casos. Municipios como Facatativá, Fusagasugá, Chía,
+                Girardot y Cajicá se ubican en un grupo intermedio-alto, mientras que la mayoría de municipios
+                presentan menor incidencia relativa.
+            </p>
+        </article>
+
+        <article class="panel">
+            <h2>Clasificación del nivel de riesgo</h2>
+            <p>
+                Se aplicaron algoritmos de clasificación para identificar niveles de riesgo bajo, medio y alto
+                a partir de las variables preparadas para minería de datos.
+            </p>
+            <img src="{{ url_for('static', filename='img/orange_clasificacion.png') }}" alt="Clasificación en Orange">
+            <p>
+                En la comparación de modelos, Logistic Regression obtuvo el mejor desempeño con una exactitud
+                aproximada de 0.988 y un F1-score de 0.988, superando a Tree, Random Forest y kNN. Esto indica
+                que las variables utilizadas permiten clasificar correctamente los niveles de riesgo bajo,
+                medio y alto.
+            </p>
+        </article>
+
+        <article class="panel">
+            <h2>Reglas de asociación</h2>
+            <p>
+                Se analizaron asociaciones entre categorías delictivas para identificar patrones frecuentes
+                dentro de los municipios y años estudiados.
+            </p>
+            <img src="{{ url_for('static', filename='img/orange_asociacion.png') }}" alt="Reglas de asociación en Orange">
+            <p>
+                Las reglas de asociación mostraron patrones de coexistencia entre categorías delictivas.
+                Se observaron reglas con confianza superior al 90 % y lift mayor que 1, especialmente
+                relacionadas con delitos sexuales, desaparecidos, homicidios, suicidios y otros indicadores.
+                Estas relaciones no implican causalidad, pero sí muestran patrones frecuentes dentro del conjunto de datos.
+            </p>
+        </article>
+
+        <article class="panel">
+            <h2>Conclusiones del conocimiento oculto</h2>
+            <ul>
+                <li>El clustering permitió descubrir grupos de municipios con comportamientos similares en seguridad ciudadana.</li>
+                <li>Soacha se identificó como un municipio atípico por su alta concentración de casos frente al resto de Cundinamarca.</li>
+                <li>La clasificación permitió estimar niveles de riesgo bajo, medio y alto, destacando a Logistic Regression como el modelo con mejor desempeño.</li>
+                <li>Las reglas de asociación evidenciaron patrones de coexistencia entre categorías delictivas, principalmente alrededor de delitos sexuales, desaparecidos, homicidios y suicidios.</li>
+                <li>Los resultados de minería de datos complementan el dashboard descriptivo, ya que permiten descubrir patrones ocultos que no se observan únicamente con visualizaciones agregadas.</li>
+            </ul>
+        </article>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    Fuente: Datos abiertos de Seguridad Ciudadana, DIVIPOLA y proyecciones de población DANE. Elaboración propia.
+</footer>
+
+</body>
+</html>
