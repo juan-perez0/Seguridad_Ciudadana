@@ -7,33 +7,36 @@
 </head>
 <body>
 
-    <header class="header">
-        <h1>Dashboard de Seguridad Ciudadana en Cundinamarca</h1>
-        <p>Modelo multidimensional integrado en una solución web con Flask y Power BI</p>
-    </header>
+<header class="header">
+    <h1>Dashboard de Seguridad Ciudadana en Cundinamarca</h1>
+    <p>Modelo multidimensional integrado en una solución web con Flask y Power BI</p>
+</header>
 
-    <main class="container">
-        <section class="info">
-            <h2>Visualización analítica</h2>
-            <p>
-                Este dashboard permite analizar indicadores de seguridad ciudadana por municipio, año,
-                categoría delictiva e indicador, a partir del modelo multidimensional construido.
-            </p>
-        </section>
+<main class="container">
 
-        <section class="dashboard">
-            <iframe 
-                title="Dashboard Seguridad Ciudadana"
-                src="{{ powerbi_url }}"
-                frameborder="0"
-                allowfullscreen="true">
-            </iframe>
-        </section>
-    </main>
+    <section class="info">
+        <h2>Visualización analítica</h2>
+        <p>
+            Este dashboard permite analizar indicadores de seguridad ciudadana por municipio, año,
+            categoría delictiva e indicador, a partir del modelo multidimensional construido.
+        </p>
+        <a class="button" href="/mineria">Ver análisis de minería de datos</a>
+    </section>
 
-    <footer class="footer">
-        Fuente: Datos abiertos de Seguridad Ciudadana, DIVIPOLA y proyecciones de población DANE. Elaboración propia.
-    </footer>
+    <section class="dashboard">
+        <iframe 
+            title="Dashboard Seguridad Ciudadana"
+            src="{{ powerbi_url }}"
+            frameborder="0"
+            allowfullscreen="true">
+        </iframe>
+    </section>
+
+</main>
+
+<footer class="footer">
+    Fuente: Datos abiertos de Seguridad Ciudadana, DIVIPOLA y proyecciones de población DANE. Elaboración propia.
+</footer>
 
 </body>
 </html>
