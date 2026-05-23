@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conocimiento Oculto con Orange</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1>Conocimiento Oculto con Orange Data Mining</h1>
+    <p>Clustering, clasificación y reglas de asociación aplicadas a seguridad ciudadana</p>
+</header>
+
+<main class="container">
+
+    <section class="info">
+        <h2>Objetivo del análisis</h2>
+        <p>
+            Esta sección presenta los resultados obtenidos mediante técnicas de minería de datos aplicadas a los indicadores de seguridad ciudadana. El objetivo fue descubrir agrupamientos, niveles de riesgo y asociaciones entre categorías delictivas.
+        </p>
+
+        <div class="button-group">
+            <a class="button" href="/">Volver al dashboard principal</a>
+            <a class="button secondary" href="/pyspark">Ver conocimiento profundo con PySpark</a>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Clustering de municipios</h2>
+        <p>
+            Se aplicó k-Means para agrupar municipios con comportamientos similares de seguridad ciudadana. El resultado permitió identificar municipios con baja, media y alta incidencia relativa.
+        </p>
+        <img src="{{ url_for('static', filename='img/orange_clustering.png') }}" alt="Clustering en Orange">
+        <p>
+            Soacha aparece como un municipio atípico por su alta concentración de casos. Otros municipios como Facatativá, Fusagasugá, Chía, Girardot y Cajicá se ubican en un grupo intermedio, mientras que la mayoría de municipios presentan menor incidencia relativa.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>Clasificación del nivel de riesgo</h2>
+        <p>
+            Se compararon modelos como árbol de decisión, kNN, Random Forest y Logistic Regression para clasificar registros en niveles de riesgo bajo, medio y alto.
+        </p>
+        <img src="{{ url_for('static', filename='img/orange_clasificacion.png') }}" alt="Clasificación en Orange">
+        <p>
+            Logistic Regression obtuvo el mejor desempeño, con una exactitud aproximada de 0.988 y un F1-score de 0.988.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>Reglas de asociación</h2>
+        <p>
+            Se analizaron asociaciones entre categorías delictivas para identificar patrones frecuentes de coexistencia dentro de los municipios y años estudiados.
+        </p>
+        <img src="{{ url_for('static', filename='img/orange_asociacion.png') }}" alt="Reglas de asociación en Orange">
+        <p>
+            Las reglas con confianza superior al 90 % y lift mayor que 1 mostraron asociaciones positivas entre categorías como delitos sexuales, desaparecidos, homicidios, suicidios y otros indicadores.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>Conclusiones del conocimiento oculto</h2>
+        <ul>
+            <li>El clustering permitió descubrir grupos de municipios con comportamientos similares.</li>
+            <li>La clasificación permitió estimar niveles de riesgo bajo, medio y alto.</li>
+            <li>Las reglas de asociación evidenciaron patrones de coexistencia entre categorías delictivas.</li>
+            <li>Los resultados complementan el dashboard descriptivo y el modelo multidimensional.</li>
+        </ul>
+    </section>
+
+</main>
+
+<footer class="footer">
+    Fuente: Datos abiertos de Seguridad Ciudadana, DIVIPOLA, proyecciones de población DANE y Orange Data Mining. Elaboración propia.
+</footer>
+
+</body>
+</html>

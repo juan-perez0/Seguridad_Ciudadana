@@ -1,0 +1,10 @@
+﻿METRICA,VALOR
+Registros originales,21716
+Registros procesados con ampliación,1085800
+Factor de ampliación del dataset,50
+Configuración Spark utilizada,local[4]
+Municipios analizados,116
+Años analizados,7
+Modelo MLlib aplicado,KMeans
+Número de clusters,3
+Silhouette del modelo,0.7219

@@ -2,134 +2,423 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Análisis de Datos</title>
+    <title>Conocimiento Profundo con PySpark</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-    <h1>Análisis de Minería de Datos</h1>
+<header class="header">
+    <h1>Conocimiento Profundo con PySpark</h1>
+    <p>Procesamiento distribuido, consultas analíticas y Machine Learning aplicado a seguridad ciudadana</p>
+</header>
 
-    <div class="contenedor">
+<main class="container">
 
-        <!-- 🔹 SECCIÓN 1 -->
-        <div class="card">
-            <h2>Contexto del Problema</h2>
-            <p>
-                El análisis se centra en el estudio de la seguridad ciudadana mediante el procesamiento
-                de datos de delitos registrados en diferentes municipios y años. El objetivo es identificar
-                patrones, tendencias y comportamientos relevantes para la toma de decisiones.
-            </p>
+    <section class="info">
+        <h2>Objetivo del análisis</h2>
+        <p>
+            Esta sección presenta el análisis avanzado realizado con PySpark sobre datos de seguridad ciudadana en Cundinamarca. Se utilizó un dataset ampliado para simular un escenario de gran volumen y aplicar procesamiento distribuido, consultas analíticas y Machine Learning con MLlib.
+        </p>
+
+        <div class="button-group">
+            <a class="button" href="/">Volver al dashboard principal</a>
+            <a class="button secondary" href="/mineria">Ver conocimiento oculto</a>
         </div>
+    </section>
 
-        <!-- 🔹 SECCIÓN 2 -->
-        <div class="card">
-            <h2>Modelo Multidimensional</h2>
+    <section class="kpi-grid">
+        {% for fila in metricas[:4] %}
+        <article class="kpi-card">
+            <span>{{ fila.METRICA }}</span>
+            <h2>{{ fila.VALOR|numero }}</h2>
+        </article>
+        {% endfor %}
+    </section>
 
-            <p><b>Hechos:</b> Número de casos reportados (DATO_NUMERICO)</p>
+    <section class="panel highlight-panel">
+        <h2>¿Qué se hizo con PySpark?</h2>
+        <p>
+            El archivo base utilizado fue <strong>seguridad_clean.csv</strong>. Este dataset fue cargado como Spark DataFrame, limpiado y transformado para generar consultas distribuidas. Para simular un volumen mayor de datos se aplicó un factor de ampliación, por lo que los totales procesados representan datos ampliados para prueba de rendimiento.
+        </p>
 
-            <p><b>Dimensiones:</b></p>
-            <ul>
-                <li>Municipio</li>
-                <li>Año</li>
-                <li>Tipo de delito</li>
-            </ul>
+        <div class="process-grid">
+            <article>
+                <h3>1. Carga</h3>
+                <p>Lectura del dataset limpio mediante Spark DataFrame.</p>
+            </article>
 
-            <p>
-                Se implementó un modelo tipo estrella que permite analizar los datos desde múltiples perspectivas.
-            </p>
+            <article>
+                <h3>2. Transformación</h3>
+                <p>Conversión de DATO_NUMERICO, eliminación de nulos y preparación de variables.</p>
+            </article>
+
+            <article>
+                <h3>3. Consultas</h3>
+                <p>Agrupaciones por municipio, año y cálculo de promedios.</p>
+            </article>
+
+            <article>
+                <h3>4. MLlib</h3>
+                <p>Segmentación de municipios mediante KMeans.</p>
+            </article>
         </div>
+    </section>
 
-        <!-- 🔹 SECCIÓN 3 -->
-        <div class="card">
-            <h2>Proceso ETL</h2>
+    <section class="chart-grid">
+        <article class="chart-card">
+            <h2>Top 10 municipios por casos procesados</h2>
+            <p>Identifica los municipios con mayor acumulación de casos dentro del dataset ampliado.</p>
+            <canvas id="chartMunicipios"></canvas>
+        </article>
 
-            <ul>
-                <li>Limpieza de datos</li>
-                <li>Conversión de tipos numéricos</li>
-                <li>Eliminación de valores nulos</li>
-                <li>Transformación de variables</li>
-                <li>Generación de datasets analíticos</li>
-            </ul>
+        <article class="chart-card">
+            <h2>Evolución anual de casos procesados</h2>
+            <p>Muestra el comportamiento temporal de los indicadores de seguridad ciudadana.</p>
+            <canvas id="chartAnios"></canvas>
+        </article>
 
-        </div>
+        <article class="chart-card">
+            <h2>Distribución de perfiles por cluster</h2>
+            <p>Resume los grupos generados por KMeans según el perfil interpretado.</p>
+            <canvas id="chartClusters"></canvas>
+        </article>
 
-        <!-- 🔹 SECCIÓN 4 -->
-        <div class="card">
-            <h2>Análisis Realizado</h2>
+        <article class="chart-card">
+            <h2>Comparación de tiempos</h2>
+            <p>Compara los tiempos de Pandas, Spark y ejecución total por escenario.</p>
+            <canvas id="chartTiempos"></canvas>
+        </article>
+    </section>
 
-            <ul>
-                <li>Identificación de municipios con mayor número de casos</li>
-                <li>Análisis de evolución de delitos por año</li>
-                <li>Comparación entre regiones</li>
-            </ul>
+    <section class="panel">
+        <h2>Métricas generales del procesamiento</h2>
+        <p>
+            Estas métricas resumen el tamaño del dataset procesado, el factor de ampliación usado para simular gran volumen y el resultado general del modelo de clustering.
+        </p>
 
-        </div>
-
-        <!-- 🔹 SECCIÓN 5 -->
-        <div class="card">
-            <h2>Análisis con PySpark</h2>
-
-            <p>
-                Se utilizó PySpark para procesar grandes volúmenes de datos de forma distribuida,
-                permitiendo mejorar el rendimiento y la eficiencia del análisis.
-            </p>
-
-            <ul>
-                <li>Procesamiento distribuido</li>
-                <li>Agrupaciones por municipio y año</li>
-                <li>Cálculo de indicadores</li>
-                <li>Generación de datasets optimizados</li>
-            </ul>
-        </div>
-
-        <!-- 🔹 SECCIÓN 6 -->
-        <div class="card">
-            <h2>Machine Learning (Clustering)</h2>
-
-            <p>
-                Se aplicó el algoritmo KMeans para segmentar municipios según su nivel de incidencia delictiva.
-            </p>
-
-            <ul>
-                <li>Cluster 0 → Baja incidencia</li>
-                <li>Cluster 1 → Media incidencia</li>
-                <li>Cluster 2 → Alta incidencia</li>
-            </ul>
-
-        </div>
-
-        <!-- 🔹 SECCIÓN 7 -->
-        <div class="card">
-            <h2>Generación de Conocimiento</h2>
-
-            <table>
+        <table class="data-table">
+            <thead>
                 <tr>
-                    <th>Tipo</th>
-                    <th>Descripción</th>
+                    <th>Métrica</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in metricas %}
+                <tr>
+                    <td>{{ fila.METRICA }}</td>
+                    <td>{{ fila.VALOR|numero }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Top 10 municipios por casos procesados</h2>
+        <p>
+            Esta agrupación distribuida identifica los municipios con mayor acumulación de casos dentro del dataset ampliado. Los valores corresponden a casos procesados después de aplicar el factor de ampliación.
+        </p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Municipio</th>
+                    <th>Total de casos procesados</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in municipios %}
+                <tr>
+                    <td>{{ fila.MUNICIPIO }}</td>
+                    <td>{{ fila.TOTAL_CASOS_PROCESADOS|numero }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Evolución anual de casos procesados</h2>
+        <p>
+            Esta consulta permite observar el comportamiento temporal de los indicadores de seguridad ciudadana. Los valores están ampliados para simular procesamiento de gran volumen.
+        </p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Año</th>
+                    <th>Total procesado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in anios %}
+                <tr>
+                    <td>{{ fila.YEAR }}</td>
+                    <td>{{ fila.TOTAL_PROCESADO|numero }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Promedio del indicador por municipio</h2>
+        <p>
+            Esta consulta permite comparar el comportamiento promedio del indicador numérico por municipio. A diferencia de los totales, el promedio ayuda a observar la intensidad relativa del dato.
+        </p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Municipio</th>
+                    <th>Promedio del indicador</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in promedios %}
+                <tr>
+                    <td>{{ fila.MUNICIPIO }}</td>
+                    <td>{{ fila.PROMEDIO_INDICADOR|numero }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Clustering con MLlib</h2>
+        <p>
+            Se aplicó KMeans de MLlib para segmentar municipios según su total de casos procesados y promedio del indicador. El número del cluster es asignado automáticamente por el algoritmo, por eso se agregó un perfil interpretativo de baja, media o alta incidencia.
+        </p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Municipio</th>
+                    <th>Total de casos procesados</th>
+                    <th>Promedio</th>
+                    <th>Cluster</th>
+                    <th>Perfil interpretado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in clusters %}
+                <tr>
+                    <td>{{ fila.MUNICIPIO }}</td>
+                    <td>{{ fila.TOTAL_CASOS_PROCESADOS|numero }}</td>
+                    <td>{{ fila.PROMEDIO_INDICADOR|numero }}</td>
+                    <td>{{ fila.prediction }}</td>
+                    <td>{{ fila.PERFIL_CLUSTER }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Comparación de tiempos de procesamiento</h2>
+        <p>
+            Se comparó el rendimiento entre Pandas y Spark. Debido a que el entorno se ejecutó en un equipo local, las configuraciones local[1], local[2] y local[4] simulan diferentes niveles de paralelismo usando núcleos locales.
+        </p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Escenario</th>
+                    <th>Master Spark</th>
+                    <th>Factor</th>
+                    <th>Tiempo Pandas</th>
+                    <th>Tiempo Spark</th>
+                    <th>Tiempo total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in tiempos %}
+                <tr>
+                    <td>{{ fila.ESCENARIO }}</td>
+                    <td>{{ fila.MASTER }}</td>
+                    <td>{{ fila.FACTOR|numero }}</td>
+                    <td>{{ fila.TIEMPO_PANDAS|numero }} s</td>
+                    <td>{{ fila.TIEMPO_SPARK|numero }} s</td>
+                    <td>{{ fila.TIEMPO_TOTAL|numero }} s</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>
+            En datasets pequeños Pandas puede ser más rápido por su bajo costo de arranque. Spark se justifica principalmente cuando el volumen de datos crece y se requiere procesamiento distribuido o paralelo.
+        </p>
+    </section>
+
+    <section class="panel">
+        <h2>Tabla comparativa de niveles de conocimiento</h2>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nivel</th>
+                    <th>Herramienta</th>
+                    <th>Resultado obtenido</th>
+                    <th>Aporte al proyecto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Conocimiento evidente</td>
+                    <td>Dashboard descriptivo</td>
+                    <td>Total de casos, indicadores generales y filtros básicos.</td>
+                    <td>Permite observar información visible del conjunto de datos.</td>
                 </tr>
                 <tr>
-                    <td>Evidente</td>
-                    <td>Datos básicos visibles (número de casos)</td>
+                    <td>Conocimiento multidimensional</td>
+                    <td>Modelo estrella y Power BI</td>
+                    <td>Análisis por municipio, año, indicador, categoría y fuente.</td>
+                    <td>Permite analizar la información desde múltiples perspectivas.</td>
                 </tr>
                 <tr>
-                    <td>Multidimensional</td>
-                    <td>Análisis por municipio, año y tipo de delito</td>
+                    <td>Conocimiento oculto</td>
+                    <td>Orange Data Mining</td>
+                    <td>Clustering, clasificación y reglas de asociación.</td>
+                    <td>Permite descubrir patrones no evidentes en los datos.</td>
                 </tr>
                 <tr>
-                    <td>Oculto</td>
-                    <td>Patrones detectados mediante agrupaciones</td>
+                    <td>Conocimiento profundo</td>
+                    <td>PySpark y MLlib</td>
+                    <td>Procesamiento distribuido, consultas analíticas y Machine Learning.</td>
+                    <td>Permite procesar datos ampliados y comparar rendimiento.</td>
                 </tr>
-                <tr>
-                    <td>Profundo</td>
-                    <td>Segmentación mediante clustering con Machine Learning</td>
-                </tr>
-            </table>
+            </tbody>
+        </table>
+    </section>
 
-        </div>
+    <section class="panel">
+        <h2>Conclusiones del conocimiento profundo</h2>
 
-    </div>
+        <ul>
+            <li>PySpark permitió transformar el análisis tradicional en un proceso escalable basado en procesamiento distribuido.</li>
+            <li>El dataset fue ampliado para simular un volumen mayor de información y evaluar el comportamiento del procesamiento.</li>
+            <li>Las agrupaciones distribuidas permitieron identificar municipios y años con mayor concentración de registros.</li>
+            <li>El uso de MLlib permitió segmentar municipios mediante KMeans y generar perfiles de incidencia.</li>
+            <li>La comparación de tiempos evidenció que Spark tiene un costo de arranque mayor, pero ofrece ventajas para escenarios de mayor volumen y paralelismo.</li>
+            <li>El conocimiento profundo complementa los niveles evidente, multidimensional y oculto, fortaleciendo el ciclo completo de análisis del proyecto.</li>
+        </ul>
+    </section>
 
-    <a href="/"><button>⬅ Volver al Dashboard</button></a>
+</main>
+
+<footer class="footer">
+    Fuente: Datos abiertos de Seguridad Ciudadana, DIVIPOLA, proyecciones de población DANE, Orange Data Mining y PySpark. Elaboración propia.
+</footer>
+
+<script id="graficas-data" type="application/json">
+    {{ graficas | tojson | safe }}
+</script>
+
+<script>
+    const datosGraficas = JSON.parse(document.getElementById("graficas-data").textContent);
+
+    const chartMunicipios = datosGraficas.municipios;
+    const chartAnios = datosGraficas.anios;
+    const chartClusters = datosGraficas.clusters;
+    const chartTiempos = datosGraficas.tiempos;
+
+    new Chart(document.getElementById("chartMunicipios"), {
+        type: "bar",
+        data: {
+            labels: chartMunicipios.labels,
+            datasets: [{
+                label: "Casos procesados",
+                data: chartMunicipios.values,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("chartAnios"), {
+        type: "line",
+        data: {
+            labels: chartAnios.labels,
+            datasets: [{
+                label: "Total procesado",
+                data: chartAnios.values,
+                tension: 0.35,
+                borderWidth: 3,
+                pointRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(document.getElementById("chartClusters"), {
+        type: "doughnut",
+        data: {
+            labels: chartClusters.labels,
+            datasets: [{
+                label: "Municipios",
+                data: chartClusters.values,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    new Chart(document.getElementById("chartTiempos"), {
+        type: "bar",
+        data: {
+            labels: chartTiempos.labels,
+            datasets: [
+                {
+                    label: "Pandas",
+                    data: chartTiempos.pandas,
+                    borderWidth: 1
+                },
+                {
+                    label: "Spark",
+                    data: chartTiempos.spark,
+                    borderWidth: 1
+                },
+                {
+                    label: "Total",
+                    data: chartTiempos.total,
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 
 </body>
 </html>

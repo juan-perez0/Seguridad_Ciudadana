@@ -1,0 +1,5 @@
+﻿ESCENARIO,TIEMPO_PANDAS,TIEMPO_SPARK,TIEMPO_TOTAL,MASTER,FACTOR
+Pandas vs Spark local,0.0617,0.1406,16.2131,local[*],1.0
+Local master,0.1402,0.2269,19.892,local[1],50.0
+Master + 1 worker,0.1445,0.2286,19.5386,local[2],50.0
+Master + 2 workers,0.1377,0.2143,19.9426,local[4],50.0

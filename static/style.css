@@ -77,19 +77,36 @@ body {
     background: #FFFFFF;
 }
 
+.button-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+}
+
 .button {
     display: inline-block;
     margin-top: 14px;
     padding: 10px 16px;
     background-color: #1E88E5;
-    color: white;
+    color: #FFFFFF;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
+    border: none;
+    cursor: pointer;
 }
 
 .button:hover {
     background-color: #0D47A1;
+}
+
+.button.secondary {
+    background-color: #0B1F3A;
+}
+
+.button.secondary:hover {
+    background-color: #163B68;
 }
 
 .mining-grid {
@@ -103,12 +120,14 @@ body {
     border: 1px solid #D9DEE7;
     border-radius: 14px;
     padding: 22px;
+    margin-bottom: 22px;
     box-shadow: 0 8px 22px rgba(11, 31, 58, 0.06);
 }
 
 .panel h2 {
     margin-top: 0;
     color: #0B1F3A;
+    font-size: 22px;
 }
 
 .panel p {
@@ -127,6 +146,68 @@ body {
 .panel ul {
     color: #526174;
     line-height: 1.7;
+    padding-left: 22px;
+}
+
+.panel li {
+    color: #526174;
+    line-height: 1.7;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.kpi-card {
+    background-color: #FFFFFF;
+    border: 1px solid #D9DEE7;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 8px 22px rgba(11, 31, 58, 0.06);
+}
+
+.kpi-card h2 {
+    margin: 0;
+    color: #0B1F3A;
+    font-size: 30px;
+}
+
+.kpi-card p {
+    color: #526174;
+    margin-bottom: 0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+}
+
+.data-table th {
+    background-color: #0B1F3A;
+    color: #FFFFFF;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #0B1F3A;
+}
+
+.data-table td {
+    border: 1px solid #D9DEE7;
+    padding: 9px;
+    color: #0B1F3A;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #F4F7FB;
+}
+
+.data-table tr:hover {
+    background-color: #EAF3FF;
 }
 
 .footer {
@@ -136,6 +217,14 @@ body {
     text-align: center;
     color: #667085;
     font-size: 13px;
+}
+
+a {
+    color: #1E88E5;
+}
+
+strong {
+    color: #0B1F3A;
 }
 
 @media (max-width: 900px) {
@@ -159,6 +248,18 @@ body {
     .dashboard iframe {
         height: 680px;
     }
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .data-table {
+        font-size: 12px;
+    }
+
+    .panel {
+        padding: 18px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -176,5 +277,94 @@ body {
 
     .dashboard iframe {
         height: 600px;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+}
+.highlight-panel {
+    border-left: 5px solid #0B1F3A;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.process-grid article {
+    border: 1px solid #D9DEE7;
+    border-radius: 12px;
+    padding: 16px;
+    background: #F8FAFC;
+}
+
+.process-grid h3 {
+    margin: 0 0 8px;
+    color: #0B1F3A;
+}
+
+.process-grid p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 22px;
+}
+
+.chart-card {
+    background-color: #FFFFFF;
+    border: 1px solid #D9DEE7;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 8px 22px rgba(11, 31, 58, 0.06);
+}
+
+.chart-card h2 {
+    margin-top: 0;
+    color: #0B1F3A;
+    font-size: 21px;
+}
+
+.chart-card p {
+    color: #526174;
+    line-height: 1.55;
+    font-size: 14.5px;
+}
+
+.chart-card canvas {
+    width: 100%;
+    max-height: 340px;
+    margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .process-grid {
+        grid-template-columns: 1fr;
     }
 }
