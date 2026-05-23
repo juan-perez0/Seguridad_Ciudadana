@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Análisis de Datos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Análisis de Minería de Datos</h1>
+
+    <div class="contenedor">
+
+        <!-- 🔹 SECCIÓN 1 -->
+        <div class="card">
+            <h2>Contexto del Problema</h2>
+            <p>
+                El análisis se centra en el estudio de la seguridad ciudadana mediante el procesamiento
+                de datos de delitos registrados en diferentes municipios y años. El objetivo es identificar
+                patrones, tendencias y comportamientos relevantes para la toma de decisiones.
+            </p>
+        </div>
+
+        <!-- 🔹 SECCIÓN 2 -->
+        <div class="card">
+            <h2>Modelo Multidimensional</h2>
+
+            <p><b>Hechos:</b> Número de casos reportados (DATO_NUMERICO)</p>
+
+            <p><b>Dimensiones:</b></p>
+            <ul>
+                <li>Municipio</li>
+                <li>Año</li>
+                <li>Tipo de delito</li>
+            </ul>
+
+            <p>
+                Se implementó un modelo tipo estrella que permite analizar los datos desde múltiples perspectivas.
+            </p>
+        </div>
+
+        <!-- 🔹 SECCIÓN 3 -->
+        <div class="card">
+            <h2>Proceso ETL</h2>
+
+            <ul>
+                <li>Limpieza de datos</li>
+                <li>Conversión de tipos numéricos</li>
+                <li>Eliminación de valores nulos</li>
+                <li>Transformación de variables</li>
+                <li>Generación de datasets analíticos</li>
+            </ul>
+
+        </div>
+
+        <!-- 🔹 SECCIÓN 4 -->
+        <div class="card">
+            <h2>Análisis Realizado</h2>
+
+            <ul>
+                <li>Identificación de municipios con mayor número de casos</li>
+                <li>Análisis de evolución de delitos por año</li>
+                <li>Comparación entre regiones</li>
+            </ul>
+
+        </div>
+
+        <!-- 🔹 SECCIÓN 5 -->
+        <div class="card">
+            <h2>Análisis con PySpark</h2>
+
+            <p>
+                Se utilizó PySpark para procesar grandes volúmenes de datos de forma distribuida,
+                permitiendo mejorar el rendimiento y la eficiencia del análisis.
+            </p>
+
+            <ul>
+                <li>Procesamiento distribuido</li>
+                <li>Agrupaciones por municipio y año</li>
+                <li>Cálculo de indicadores</li>
+                <li>Generación de datasets optimizados</li>
+            </ul>
+        </div>
+
+        <!-- 🔹 SECCIÓN 6 -->
+        <div class="card">
+            <h2>Machine Learning (Clustering)</h2>
+
+            <p>
+                Se aplicó el algoritmo KMeans para segmentar municipios según su nivel de incidencia delictiva.
+            </p>
+
+            <ul>
+                <li>Cluster 0 → Baja incidencia</li>
+                <li>Cluster 1 → Media incidencia</li>
+                <li>Cluster 2 → Alta incidencia</li>
+            </ul>
+
+        </div>
+
+        <!-- 🔹 SECCIÓN 7 -->
+        <div class="card">
+            <h2>Generación de Conocimiento</h2>
+
+            <table>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr>
+                    <td>Evidente</td>
+                    <td>Datos básicos visibles (número de casos)</td>
+                </tr>
+                <tr>
+                    <td>Multidimensional</td>
+                    <td>Análisis por municipio, año y tipo de delito</td>
+                </tr>
+                <tr>
+                    <td>Oculto</td>
+                    <td>Patrones detectados mediante agrupaciones</td>
+                </tr>
+                <tr>
+                    <td>Profundo</td>
+                    <td>Segmentación mediante clustering con Machine Learning</td>
+                </tr>
+            </table>
+
+        </div>
+
+    </div>
+
+    <a href="/"><button>⬅ Volver al Dashboard</button></a>
+
+</body>
+</html>
