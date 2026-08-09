@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Conocimiento Oculto con Orange</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-<header class="header">
-    <h1>Conocimiento Oculto con Orange Data Mining</h1>
-    <p>Clustering, clasificación y reglas de asociación aplicadas a seguridad ciudadana</p>
-</header>
+{% block title %}Conocimiento Oculto con Orange{% endblock %}
 
-<main class="container">
+{% block header_title %}Conocimiento Oculto con Orange Data Mining{% endblock %}
+{% block header_subtitle %}Clustering, clasificación y reglas de asociación aplicadas a seguridad ciudadana{% endblock %}
 
+{% block content %}
     <section class="info">
         <h2>Objetivo del análisis</h2>
         <p>
@@ -68,12 +60,8 @@
             <li>Los resultados complementan el dashboard descriptivo y el modelo multidimensional.</li>
         </ul>
     </section>
+{% endblock %}
 
-</main>
-
-<footer class="footer">
+{% block footer %}
     Fuente: Datos abiertos de Seguridad Ciudadana, DIVIPOLA, proyecciones de población DANE y Orange Data Mining. Elaboración propia.
-</footer>
-
-</body>
-</html>
+{% endblock %}

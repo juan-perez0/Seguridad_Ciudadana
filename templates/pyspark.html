@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Conocimiento Profundo con PySpark</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% extends "base.html" %}
+
+{% block title %}Conocimiento Profundo con PySpark{% endblock %}
+
+{% block extra_head %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+{% endblock %}
 
-<header class="header">
-    <h1>Conocimiento Profundo con PySpark</h1>
-    <p>Procesamiento distribuido, consultas analíticas y Machine Learning aplicado a seguridad ciudadana</p>
-</header>
+{% block header_title %}Conocimiento Profundo con PySpark{% endblock %}
+{% block header_subtitle %}Procesamiento distribuido, consultas analíticas y Machine Learning aplicado a seguridad ciudadana{% endblock %}
 
-<main class="container">
-
+{% block content %}
     <section class="info">
         <h2>Objetivo del análisis</h2>
         <p>
@@ -306,13 +301,13 @@
             <li>El conocimiento profundo complementa los niveles evidente, multidimensional y oculto, fortaleciendo el ciclo completo de análisis del proyecto.</li>
         </ul>
     </section>
+{% endblock %}
 
-</main>
-
-<footer class="footer">
+{% block footer %}
     Fuente: Datos abiertos de Seguridad Ciudadana, DIVIPOLA, proyecciones de población DANE, Orange Data Mining y PySpark. Elaboración propia.
-</footer>
+{% endblock %}
 
+{% block extra_scripts %}
 <script id="graficas-data" type="application/json">
     {{ graficas | tojson | safe }}
 </script>
@@ -419,6 +414,4 @@
         }
     });
 </script>
-
-</body>
-</html>
+{% endblock %}

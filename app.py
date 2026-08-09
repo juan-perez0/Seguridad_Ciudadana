@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 import csv
 from pathlib import Path
@@ -5,7 +6,8 @@ from collections import Counter
 
 app = Flask(__name__)
 
-POWERBI_URL = "https://app.powerbi.com/view?r=eyJrIjoiZjJmNzU2MGQtZjI0Ni00YmE1LTgxODItMzEwNDg3M2ZkMmQ3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9"
+DEFAULT_POWERBI_URL = "https://app.powerbi.com/view?r=eyJrIjoiZjJmNzU2MGQtZjI0Ni00YmE1LTgxODItMzEwNDg3M2ZkMmQ3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9"
+POWERBI_URL = os.environ.get("POWERBI_URL", DEFAULT_POWERBI_URL)
 
 
 def leer_csv(nombre_archivo, limite=None):
@@ -32,27 +34,36 @@ def obtener_valor(fila, *columnas):
 
 
 def convertir_numero(valor):
+    if valor in (None, ""):
+        return 0.0
+
+    texto = str(valor).strip()
+
     try:
-        return float(str(valor).replace(".", "").replace(",", "."))
+        return float(texto)
     except ValueError:
-        try:
-            return float(valor)
-        except ValueError:
-            return 0.0
-    except TypeError:
+        pass
+
+    try:
+        return float(texto.replace(".", "").replace(",", "."))
+    except (ValueError, TypeError):
         return 0.0
 
 
 def formatear_numero(valor):
+    texto = str(valor).strip()
+
     try:
-        numero = float(str(valor).replace(".", "").replace(",", "."))
-        if numero.is_integer():
-            return f"{int(numero):,}".replace(",", ".")
-        return f"{numero:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        numero = float(texto)
     except ValueError:
-        return valor
-    except TypeError:
-        return valor
+        try:
+            numero = float(texto.replace(".", "").replace(",", "."))
+        except ValueError:
+            return valor
+
+    if numero.is_integer():
+        return f"{int(numero):,}".replace(",", ".")
+    return f"{numero:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
 def construir_graficas(municipios, anios, clusters, tiempos):
@@ -136,4 +147,6 @@ def pyspark():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    debug = os.environ.get("FLASK_DEBUG", "false").lower() in ("1", "true", "yes")
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=debug)
